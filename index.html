@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Privacy Policy · MewMo</title>
+    <!-- 预连接 Google Fonts 提升加载性能，确保 Quicksand Bold 可靠显示 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 加载 Quicksand 字体：400 (常规) 和 700 (粗体)，并使用 swap 保证文字即时可见 -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* 极简重置 + 干净背景 */
         * {
@@ -27,28 +32,30 @@
             background: white;
         }
 
-        /* 只有 "MewMo" 这几个字母用 Quicksand Bold */
-        .app-name {
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
+        /* ────────────────────────────────────────────── */
+        /* 核心修复：让所有 .app-name 强制使用 Quicksand Bold */
+        /* 确保无论在哪里出现，都是圆润、醒目的粗体效果 */
+        /* ────────────────────────────────────────────── */
+        .app-name,
+        span.app-name,
+        strong .app-name,
+        p .app-name,
+        li .app-name,
+        div .app-name {
+            font-family: 'Quicksand', 'Quicksand Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 700 !important;       /* 强制粗体，覆盖任何意外权重 */
             font-style: normal;
+            letter-spacing: -0.2px;            /* 轻微字距调整，更符合品牌感 */
+            display: inline-block;              /* 保证盒子模型稳定 */
         }
 
-        /* 页眉的 MewMo 大标题 */
+        /* 页眉中的大号 MewMo — 增加一点视觉比重 */
         h1 .app-name {
-            font-size: 1.8rem;
+            font-size: 1.9rem;                 /* 与配合 h1 主视觉保持协调 */
             letter-spacing: -0.3px;
         }
 
-        /* 正文里出现的 MewMo 也会变成圆润粗体 */
-        strong .app-name,
-        p .app-name,
-        li .app-name {
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-        }
-
-        /* 保持普通加粗样式不变，只对类名作用 */
+        /* 正文普通加粗样式保留，但不干扰 MewMo 独立表现 */
         h1, h2, h3 {
             font-weight: 600;
             margin-top: 1.8rem;
@@ -59,7 +66,7 @@
         h1 {
             margin-top: 0;
             font-size: 1.9rem;
-            border-left: 4px solid #f5a3c7;  /* 一点点可爱的柔和粉色细线 */
+            border-left: 4px solid #f5a3c7;    /* 柔和粉色细线，保持原有可爱风格 */
             padding-left: 1rem;
         }
 
@@ -107,14 +114,24 @@
             padding-top: 1.5rem;
         }
 
-        /* 小可爱点缀：页面底部一个小爪印? 不用太花哨，加点圆角卡片感 */
+        /* 轻量圆角卡片感 */
         .container {
             border-radius: 24px;
             padding: 0.2rem 0.2rem 0.5rem 0.2rem;
         }
 
-        /* 让 Quicksand 字体正常加载 (Google Fonts 轻量) */
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+        /* 额外保障：任何地方出现 MewMo 文本都继承样式（例如邮箱签名中的非直接span但已处理） */
+        .footer-note .app-name {
+            font-size: 1rem;
+        }
+
+        /* 防止移动端字体意外变细 */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .app-name {
+                font-weight: 700 !important;
+                -webkit-font-smoothing: antialiased;
+            }
+        }
     </style>
 </head>
 <body>
